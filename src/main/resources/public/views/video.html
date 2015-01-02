@@ -1,0 +1,51 @@
+<div>
+    <button ng-click="generateNewVideo()" ng-hide="flags.generationInProgress">Generate video</button>
+</div>
+<div>
+    <section ng-show="flags.videoNotFound && !flags.generationInProgress">
+        <div>Video does not exist. Start by generating one.</div>
+    </section>
+    <section ng-show="flags.generationInProgress">
+        <div>Please wait!</div>
+        <div>This might take a lot of time.</div>
+    </section>
+    <section class="ng-video-container" ng-hide="flags.generationInProgress || flags.videoNotFound">
+
+        <!-- Base Directive -->
+        <section class="video" ng-video>
+            <video vi-screen></video>
+
+            <section vi-controls class="controls">
+                <span vi-controls-play title="Play" class="glyphicon glyphicon-play"></span>
+                <span vi-controls-pause title="Pause" class="glyphicon glyphicon-pause"></span>
+            </section>
+
+            <section class="full-screen">
+                <span title="Full Screen" vi-full-screen-toggle class="glyphicon glyphicon-fullscreen"></span>
+            </section>
+
+            <section vi-feedback class="feedback">
+                <span class="buffering" ng-show="buffering">Buffering...</span>
+
+                <section class="loading" ng-show="loading">
+                    Loading...
+                </section>
+
+                <section vi-volume class="volume">
+                    <div class="scale">
+                        <div class="bar" style="width: {{volume * 100}}%"></div>
+                    </div>
+
+                    <span vi-volume-decrease title="Decrease Volume" class="decrease glyphicon glyphicon-minus"></span>
+                    <span vi-volume-increase title="Increase Volume" class="increase glyphicon glyphicon-plus"></span>
+                </section>
+
+                <section class="timeline">
+                    <input vi-timeline/>
+                </section>
+
+                <section vi-buffer class="buffer"></section>
+            </section>
+        </section>
+    </section>
+</div>

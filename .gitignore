@@ -1,0 +1,8 @@
+target
+*.iml
+src/main/resources/static/js/libs
+.idea
+logs
+node_modules
+src/main/resources/public/lib
+log

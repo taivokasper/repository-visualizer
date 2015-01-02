@@ -1,0 +1,36 @@
+{
+  "name": "coinbaseTraders",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli" : "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-wiredep": "latest",
+    "grunt-bower-task": "latest",
+    "grunt-include-source": "latest",
+    "grunt-karma": "latest",
+    "grunt-notify": "latest",
+    "grunt-protractor-runner": "latest",
+    "karma-jasmine": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "karma-ng-html2js-preprocessor": "latest",
+    "protractor": "latest",
+    "phantomjs": "latest",
+    "protractor-screenshot-reporter": "latest",
+    "jasmine-reporters": "1.0.0",
+    "grunt-npm-install": "latest",
+    "grunt-contrib-clean": "latest",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-junit-reporter": "latest",
+    "karma-coverage": "latest",
+    "codeclimate-test-reporter": "latest"
+  },
+  "scripts": {
+    "build": "./node_modules/grunt-cli/bin/grunt build",
+    "test": "./node_modules/grunt-cli/bin/grunt test",
+    "analyse": "./node_modules/codeclimate-test-reporter/bin/codeclimate.js"
+  }
+}

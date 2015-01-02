@@ -1,0 +1,8 @@
+<div>
+    <ul>
+        <li ng-repeat="repo in repos">
+            <a ui-sref="index.video({repoName: repo})">{{repo}}</a>
+        </li>
+    </ul>
+    <div ui-view></div>
+</div>
