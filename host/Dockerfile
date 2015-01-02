@@ -16,8 +16,12 @@ RUN a2dissite 000-default.conf
 RUN echo "[trusted]" > /etc/mercurial/hgrc.d/trust.rc
 RUN echo "groups = staff" >> /etc/mercurial/hgrc.d/trust.rc
 
+ENV JAR_NAME repovisualizer-0.0.1.jar
+ENV EXTERNAL_PORT 8080
+ENV EXTERNAL_ADDRESS localhost
+
 VOLUME ["/ssh", "/artifacts, "/reposRoot", "/avatars", "/videoResults"]
 
 EXPOSE 80
 
-CMD rm -rf /root/.ssh && mkdir /root/.ssh && cp /ssh/*rsa /root/.ssh/ && cp /ssh/known_hosts /root/.ssh/ && service apache2 start && java -jar /artifacts/repovisualizer-0.0.1.jar --port=8080 --external.server.address=192.168.59.103 --external.server.port=7070 --video.download.url.pattern=video/#REPO_NAME#.mp4 --repos.home=/reposRoot --video.results.dir=/videoResults --video.generator.script.path=/gource_generator.bash
+CMD rm -rf /root/.ssh && mkdir /root/.ssh && cp /ssh/*rsa /root/.ssh/ && cp /ssh/known_hosts /root/.ssh/ && service apache2 start && java -jar /artifacts/${JAR_NAME} --port=8080 --external.server.address=${EXTERNAL_ADDRESS} --external.server.port=${EXTERNAL_PORT} --video.download.url.pattern=video/#REPO_NAME#.mp4 --repos.home=/reposRoot --video.results.dir=/videoResults --video.generator.script.path=/gource_generator.bash
