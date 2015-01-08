@@ -1,4 +1,5 @@
 {
     "directory": "src/main/resources/public/lib/",
-    "interactive": false
+    "interactive": false,
+    "allow-root": true
 }
