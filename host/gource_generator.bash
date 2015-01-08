@@ -10,7 +10,7 @@ rm -f ${RESULTS_DIR}/${FILENAME}*
 screen -dmS recording xvfb-run -a -s "-screen 0 1280x720x24" gource -1280x720 -r 30 --title "$TITLE_TEXT" --user-image-dir /avatars/ --highlight-all-users -s 0.5 -o ${RESULTS_DIR}/${FILENAME}.ppm
 
 # This hack is needed because gource process doesn't stop
-sleep 60
+sleep 5
 filesize=$(stat -c '%s' ${RESULTS_DIR}/${FILENAME}.ppm)
 while [[ "$filesize" -eq "0" || $filesize -lt $(stat -c '%s' ${RESULTS_DIR}/${FILENAME}.ppm) ]] ;
 do
