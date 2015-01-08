@@ -1,3 +1,4 @@
 {
-    "directory": "src/main/resources/public/lib/"
+    "directory": "src/main/resources/public/lib/",
+    "interactive": false
 }
