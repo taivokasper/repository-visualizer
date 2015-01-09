@@ -2,7 +2,7 @@ FROM dockerfile/java:oracle-java8
 
 RUN apt-add-repository -y ppa:jon-severinsson/ffmpeg && \
 apt-get update && \
-apt-get install -y git mercurial python-setuptools xvfb xfonts-base xfonts-75dpi xfonts-100dpi xfonts-cyrillic gource ffmpeg apache2
+apt-get install -y git mercurial python-setuptools xvfb xfonts-base xfonts-75dpi xfonts-100dpi xfonts-cyrillic gource ffmpeg lsof apache2
 RUN easy_install mercurial_keyring
 
 RUN a2enmod proxy proxy_http headers
