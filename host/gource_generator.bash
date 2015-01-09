@@ -12,6 +12,7 @@ screen -dmS recording xvfb-run -a -s "-screen 0 1280x720x24" gource -1280x720 -r
 # This hack is needed because gource process doesn't stop
 sleep 5
 filesize=$(stat -c '%s' ${RESULTS_DIR}/${FILENAME}.ppm)
+sleep 30
 while [[ "$filesize" -eq "0" || $filesize -lt $(stat -c '%s' ${RESULTS_DIR}/${FILENAME}.ppm) ]] ;
 do
 	sleep 20
