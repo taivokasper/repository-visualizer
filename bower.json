@@ -5,17 +5,19 @@
     "Taivo Käsper <taivo.kasper@gmail.com>"
   ],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "bower_components",
-    "tests"
-  ],
   "dependencies": {
-    "angular": "~1.3.3",
-    "ui-router": "~0.2.13",
-    "ngvideo": "~0.4.13",
-    "angular-sanitize": "~1.3.6",
-    "angular-resource": "~1.3.8"
+    "lumx": "latest",
+    "ui-router": "latest",
+    "angular-sanitize": "latest",
+    "angular-resource": "latest",
+
+    "videogular": "latest",
+    "videogular-themes-default": "latest",
+    "videogular-controls": "latest",
+    "videogular-buffering": "latest",
+    "videogular-overlay-play": "latest",
+    "videogular-poster": "latest",
+    "videogular-ima-ads": "latest"
   },
   "resolutions": {
     "angular": "1.3.8"

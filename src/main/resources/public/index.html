@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="rv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,39 +7,46 @@
     <title>RepoVisualizer</title>
 
     <!-- bower:css -->
-    <link rel='stylesheet' href='lib/bootstrap/dist/css/bootstrap.css' />
+    <link rel="stylesheet" href="lib/lumx/dist/css/lumx.css" />
+    <link rel="stylesheet" href="lib/videogular-themes-default/videogular.css" />
     <!-- endbower -->
 
     <!-- include: "type": "css", "files": "styles/**/*.css" -->
-    <link href="styles/default.css" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
     <!-- /include -->
 
-    <link href='http://fonts.googleapis.com/css?family=Raleway|Quicksand:300,400,500' rel='stylesheet' type='text/css'>
+    <!-- CDN -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- /CDN -->
 </head>
 
 <body>
-    <header>
-    </header>
-    <main>
-        <div ui-view></div>
-    </main>
-    <footer>
-    </footer>
+    <h1 class="logo">repoVisualizer</h1>
+    <main ui-view></main>
 
     <!-- bower:js -->
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/velocity/velocity.js"></script>
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/lumx/dist/js/lumx.js"></script>
     <script src="lib/ui-router/release/angular-ui-router.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="lib/ngvideo/dist/ng-video.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/videogular/videogular.js"></script>
+    <script src="lib/videogular-controls/controls.js"></script>
+    <script src="lib/videogular-buffering/buffering.js"></script>
+    <script src="lib/videogular-overlay-play/overlay-play.js"></script>
+    <script src="lib/videogular-poster/poster.js"></script>
+    <script src="lib/videogular-ima-ads/ima-ads.js"></script>
     <!-- endbower -->
 
     <!-- include: "type": "js", "files": ["app/**/*.js"] -->
-    <script src="app/app.js"></script>
-    <script src="app/controllers.js"></script>
-    <script src="app/resources.js"></script>
+    <script src="app/App.js"></script>
+    <script src="app/Resources.js"></script>
+    <script src="app/controllers/IndexController.js"></script>
+    <script src="app/controllers/VideoController.js"></script>
+    <script src="app/directives/VideoDirective.js"></script>
     <!-- /include -->
 </body>
 </html>

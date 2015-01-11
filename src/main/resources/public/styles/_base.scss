@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background: $dark-blue;
+  font-family: $helvetica;
+}
+
+* {
+
+  outline: none;
+}
+
+.logo {
+  z-index: 2;
+
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  margin: 0;
+  color: darken($dark-blue, 10%);
+  font-size: 20px;
+  font-weight: 500;
+}

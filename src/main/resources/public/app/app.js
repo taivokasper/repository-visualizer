@@ -1,18 +1,27 @@
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngVideo']);
+angular.module('rv',
+        [
+            'ui.router',
+            'ngResource',
+            'lumx',
+            'com.2fdevs.videogular',
+            'com.2fdevs.videogular.plugins.controls',
+            'com.2fdevs.videogular.plugins.overlayplay',
+            'com.2fdevs.videogular.plugins.poster'
+        ]
+    ).config(function ($stateProvider, $urlRouterProvider) {
+        'use strict';
 
-app.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
 
-    $urlRouterProvider.otherwise('/');
-
-    $stateProvider
-        .state('index', {
-            url: '/',
-            templateUrl: 'views/index.html',
-            controller: 'IndexController'
-        })
-        .state('index.video', {
-            url: '/video/:repoName',
-            templateUrl: 'views/video.html',
-            controller: 'VideoController'
-        });
-});
+        $stateProvider
+            .state('index', {
+                url: '/',
+                templateUrl: 'views/index.html',
+                controller: 'IndexController'
+            })
+            .state('index.video', {
+                url: '/video/:repoName',
+                templateUrl: 'views/video.html',
+                controller: 'VideoController'
+            });
+    });

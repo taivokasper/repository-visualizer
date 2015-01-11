@@ -81,7 +81,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-npm-install');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['clean', 'npm-install', 'bower', 'wiredep', 'includeSource', 'karma', 'watch']);
+    grunt.registerTask('default', ['clean', 'npm-install', 'bower', 'wiredep', 'includeSource', /*'karma',*/ 'watch']);
     grunt.registerTask('build', ['clean', 'npm-install', 'bower', 'wiredep', 'includeSource']);
 
     grunt.registerTask('test', ['clean', 'karma']);
