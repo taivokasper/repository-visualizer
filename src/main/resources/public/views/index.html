@@ -1,8 +1,16 @@
-<div>
+<aside class="side-bar">
+    <h3>Repositories</h3>
     <ul>
         <li ng-repeat="repo in repos">
-            <a ui-sref="index.video({repoName: repo})">{{repo}}</a>
+            <a ui-sref="index.video({repoName: repo.name})" ng-class="{ 'active-repo': isActiveRepo(repo.name) }">
+                <i class="fa fa-angle-right" ng-show="isActiveRepo(repo.name)"></i> {{repo.name}}
+            </a>
         </li>
     </ul>
-    <div ui-view></div>
-</div>
+</aside>
+
+<section class="repo-view-wrapper" ui-view>
+    <div class="instructions">
+        <i class="fa fa-arrow-circle-left"></i> Choose a repo to generate a video
+    </div>
+</section>

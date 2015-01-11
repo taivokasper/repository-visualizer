@@ -35,7 +35,7 @@ public class RepoController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseStatus(HttpStatus.OK)
-    public List<String> getReposNames() {
-        return repoService.getListOfRepositories().stream().map(Repo::getName).collect(toList());
+    public List<Repo> getReposNames() {
+        return repoService.getListOfRepositories();
     }
 }

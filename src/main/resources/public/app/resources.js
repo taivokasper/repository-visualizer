@@ -1,17 +1,21 @@
-var app = angular.module('app');
+angular.module('rv').factory('RepoListResource', function ($resource) {
+	'use strict';
 
-app.factory('RepoListResource', function ($resource) {
-    return $resource('rest/repo/list', {}, {
-        getRepos: {method: 'GET', isArray: true}
-    });
+	return $resource('rest/repo/list', {}, {
+		getRepos: {method: 'GET', isArray: true}
+	});
 });
 
-app.factory('RepoResource', function ($resource) {
-    return $resource('rest/repo/:repoName', {repoName: '@repoName'});
+angular.module('rv').factory('RepoResource', function ($resource) {
+	'use strict';
+
+	return $resource('rest/repo/:repoName', {repoName: '@repoName'});
 });
 
-app.factory('GenerateVideoResource', function ($resource) {
-    return $resource('rest/repo/:repoName', {repoName: '@repoName'}, {
-        generate: {method: 'POST'}
-    });
+angular.module('rv').factory('GenerateVideoResource', function ($resource) {
+	'use strict';
+
+	return $resource('rest/repo/:repoName', {repoName: '@repoName'}, {
+		generate: {method: 'POST'}
+	});
 });
