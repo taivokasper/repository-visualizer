@@ -54,6 +54,14 @@ module.exports = function (grunt) {
             all: {}
         },
 
+        sass: {
+            dist: {
+                files: {
+                    '<%= conf.appDir %>/styles/css/style.css' : '<%= conf.appDir %>/styles/sass/style.scss'
+                }
+            }
+        },
+
         watch: {
             bower: {
                 files: ['bower.json'],
@@ -80,9 +88,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-npm-install');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     grunt.registerTask('default', ['clean', 'npm-install', 'bower', 'wiredep', 'includeSource', /*'karma',*/ 'watch']);
-    grunt.registerTask('build', ['clean', 'npm-install', 'bower', 'wiredep', 'includeSource']);
+    grunt.registerTask('build', ['clean', 'npm-install', 'bower', 'sass', 'wiredep', 'includeSource']);
 
     grunt.registerTask('test', ['clean', 'karma']);
     grunt.registerTask('test:unit', ['clean', 'karma']);

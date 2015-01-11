@@ -2,7 +2,8 @@
   "name": "RepoVisualizer",
   "version": "0.0.1",
   "authors": [
-    "Taivo Käsper <taivo.kasper@gmail.com>"
+    "Taivo Käsper <taivo.kasper@gmail.com>",
+    "Uku Pattak <ukupat@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
