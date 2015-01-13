@@ -1,6 +1,6 @@
 builder:
     build: builder/
     volumes:
-        - source:/source
+        - .:/source
         - artifact:/artifact
     
