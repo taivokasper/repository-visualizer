@@ -1,16 +1,16 @@
 angular.module('rv').controller('IndexController', [
-	'$scope', '$location', 'RepoListResource',
-	function ($scope, $location, RepoListResource) {
-		'use strict';
+    '$scope', '$location', 'RepoListResource',
+    function ($scope, $location, RepoListResource) {
+        'use strict';
 
-		$scope.repos = [];
+        $scope.repos = [];
 
-		RepoListResource.getRepos().$promise.then(function (data) {
-			$scope.repos = data;
-		});
+        RepoListResource.getRepos().$promise.then(function (data) {
+            $scope.repos = data;
+        });
 
-		$scope.isActiveRepo = function (repoName) {
-			return $location.url() === '//video/' + repoName;
-		};
-	}
+        $scope.isActiveRepo = function (repoName) {
+            return $location.url() === '//video/' + repoName;
+        };
+    }
 ]);

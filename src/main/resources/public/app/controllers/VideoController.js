@@ -1,31 +1,23 @@
 angular.module('rv').controller('VideoController', [
-	'$scope', '$stateParams', '$sce', 'RepoResource', 'GenerateVideoResource',
-	function ($scope, $stateParams, $sce, RepoResource, GenerateVideoResource) {
-		'use strict';
+    '$scope', '$state', '$stateParams', 'GenerateVideoResource', 'repo',
+    function ($scope, $state, $stateParams, GenerateVideoResource, repo) {
+        'use strict';
 
-		$scope.repoName = $stateParams.repoName;
+        $scope.repoName = $stateParams.repoName;
+        $scope.videoUrl = repo.videoPath;
 
-		$scope.flags = {
-			generationInProgress: false,
-			videoNotFound: true
-		};
+        $scope.flags = {
+            generationInProgress: false,
+            videoNotFound: repo.videoPath === null
+        };
 
-		function setVideoUrl(data) {
-			$scope.flags.generationInProgress = false;
-			$scope.flags.videoNotFound = data.videoPath === null;
+        $scope.generateNewVideo = function () {
+            $scope.flags.generationInProgress = true;
 
-			if ($scope.flags.videoNotFound) {
-				return;
-			}
-			$scope.videoUrl = data.videoPath;
-		}
-
-		RepoResource.get({ repoName: $scope.repoName }).$promise.then(setVideoUrl);
-
-		$scope.generateNewVideo = function () {
-			$scope.flags.generationInProgress = true;
-
-			GenerateVideoResource.generate({ repoName: $scope.repoName }).$promise.then(setVideoUrl);
-		};
-	}
+            GenerateVideoResource.generate({repoName: $scope.repoName}).$promise
+                .then(function () {
+                    $state.reload()
+                });
+        };
+    }
 ]);

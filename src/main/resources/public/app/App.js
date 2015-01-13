@@ -15,13 +15,18 @@ angular.module('rv',
 
         $stateProvider
             .state('index', {
-                url: '/',
+                url: '',
                 templateUrl: 'views/index.html',
                 controller: 'IndexController'
             })
             .state('index.video', {
                 url: '/video/:repoName',
                 templateUrl: 'views/video.html',
-                controller: 'VideoController'
+                controller: 'VideoController',
+                resolve: {
+                    repo: ['$stateParams', 'RepoResource', function ($stateParams, RepoResource) {
+                        return RepoResource.get({ repoName: $stateParams.repoName }).$promise;
+                    }]
+                }
             });
     });
