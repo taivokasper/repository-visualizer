@@ -15,7 +15,7 @@ web:
         # rsa files and known hosts are copied from this location.
         - ~/.ssh:/ssh
         # from this location the webapp .jar file is looked for
-        - ./target:/artifacts
+        - ./artifact:/artifacts
         # Committers images
         - ./avatars:/avatars
         # Directory which contains all the repositories we want to publish
