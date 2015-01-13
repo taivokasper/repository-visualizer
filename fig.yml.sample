@@ -1,3 +1,5 @@
+# copy this file as "fig.yml" and modify it's contents to your needs
+
 web:
     build: host/
     ports:
