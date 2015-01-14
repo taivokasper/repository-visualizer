@@ -24,4 +24,4 @@ VOLUME ["/ssh", "/artifacts, "/reposRoot", "/avatars", "/videoResults"]
 
 EXPOSE 80
 
-CMD rm -rf /root/.ssh && mkdir /root/.ssh && cp /ssh/*rsa /root/.ssh/ && cp /ssh/known_hosts /root/.ssh/ && service apache2 start && java -jar /artifacts/${JAR_NAME} --port=8080 --external.server.address=${EXTERNAL_ADDRESS} --external.server.port=${EXTERNAL_PORT} --video.download.url.pattern=video/#REPO_NAME#.mp4 --repos.home=/reposRoot --video.results.dir=/videoResults --video.generator.script.path=/gource_generator.bash
+CMD rm -rf /root/.ssh && mkdir /root/.ssh && cp /ssh/known_hosts /root/.ssh/ && service apache2 start && java -jar /artifacts/${JAR_NAME} --port=8080 --external.server.address=${EXTERNAL_ADDRESS} --external.server.port=${EXTERNAL_PORT} --video.download.url.pattern=video/#REPO_NAME#.mp4 --repos.home=/reposRoot --video.results.dir=/videoResults --video.generator.script.path=/gource_generator.bash
