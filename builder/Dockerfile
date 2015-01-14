@@ -1,7 +1,7 @@
 FROM dockerfile/java:oracle-java8
 
 RUN apt-get update
-RUN apt-get install -y --fix-missing git maven nodejs-legacy nodejs npm ruby-full
+RUN apt-get install -y git maven nodejs-legacy nodejs npm ruby
 RUN npm install -g grunt-cli bower
 RUN gem install sass
 

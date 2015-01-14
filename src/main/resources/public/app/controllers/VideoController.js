@@ -7,7 +7,7 @@ angular.module('rv').controller('VideoController', [
         $scope.videoUrl = repo.videoPath;
 
         $scope.flags = {
-            generationInProgress: false,
+            generationInProgress: repo.isGenerating,
             videoNotFound: repo.videoPath === null
         };
 

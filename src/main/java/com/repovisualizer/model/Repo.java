@@ -1,6 +1,7 @@
 package com.repovisualizer.model;
 
 import com.repovisualizer.exception.RepoUpdateException;
+import com.repovisualizer.service.GenerationService;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,8 @@ public class Repo {
     private String videoPath;
 
     private String downloadPathPattern;
+    private GenerationService generationService;
+    private Boolean isGenerating = false;
 
     public Repo(File location, String downloadRelativePathPattern) {
         this.location = location;
@@ -38,9 +41,10 @@ public class Repo {
             repoType = RepoType.fromDirname(hiddenDir.getName());
     }
 
-    public Repo(File location, String downloadPathPattern, String downloadRelativePathPattern) {
+    public Repo(File location, String downloadPathPattern, String downloadRelativePathPattern, GenerationService generationService) {
         this(location, downloadRelativePathPattern);
         this.downloadPathPattern = downloadPathPattern;
+        this.generationService = generationService;
     }
 
     public boolean isValidRepoRoot() {
@@ -62,6 +66,10 @@ public class Repo {
             return videoPath;
         }
         return null;
+    }
+
+    public Boolean getIsGenerating() {
+        return generationService.isGenerating(getName());
     }
 
     private boolean isExistingUrl(String url) {

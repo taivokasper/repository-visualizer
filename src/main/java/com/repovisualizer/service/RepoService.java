@@ -5,6 +5,7 @@ import com.repovisualizer.exception.VideoGenerationException;
 import com.repovisualizer.model.Repo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.zeroturnaround.exec.ProcessExecutor;
@@ -42,6 +43,8 @@ public class RepoService {
     private int externalServerPort;
     @Value(value = "${video.download.url.pattern}")
     private String videoDownloadUrlPattern;
+    @Autowired
+    private GenerationService generationService;
 
     private File getReposHome() {
         if (reposHomeFile == null) {
@@ -56,7 +59,7 @@ public class RepoService {
     public List<Repo> getListOfRepositories() {
         String videoPattern = externalServerProtocol + "://" + externalServerAddress + ":" + externalServerPort + "/" + videoDownloadUrlPattern;
         File[] files = getReposHome().listFiles(i -> i.exists() && i.isDirectory() && i.canRead() && new Repo(i, videoDownloadUrlPattern).isValidRepoRoot());
-        return Arrays.stream(files).map(i -> new Repo(i, videoPattern, videoDownloadUrlPattern)).collect(toList());
+        return Arrays.stream(files).map(i -> new Repo(i, videoPattern, videoDownloadUrlPattern, generationService)).collect(toList());
     }
 
     public Optional<Repo> getByRepoName(String repoName) {
@@ -66,10 +69,18 @@ public class RepoService {
     }
 
     public Repo generate(String repoName) {
-        Repo repo = getByRepoName(repoName).orElseThrow(RepoNotFound::new);
-        repo.update();
-        generateVideo(repo);
-        return repo;
+        if (generationService.isGenerating(repoName)) {
+            throw new VideoGenerationException("Video generation is already in progress!");
+        }
+        generationService.addRepo(repoName);
+        try {
+            Repo repo = getByRepoName(repoName).orElseThrow(RepoNotFound::new);
+            repo.update();
+            generateVideo(repo);
+            return repo;
+        } finally {
+            generationService.removeRepo(repoName);
+        }
     }
 
     private void generateVideo(Repo repo) {
