@@ -3,4 +3,5 @@ builder:
     volumes:
         - .:/source
         - artifact:/artifact
+        - ~/.m2:/root/.m2
     
