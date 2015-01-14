@@ -11,16 +11,16 @@
     "ui-router": "latest",
     "angular-sanitize": "latest",
     "angular-resource": "latest",
-
     "videogular": "latest",
     "videogular-themes-default": "latest",
     "videogular-controls": "latest",
     "videogular-buffering": "latest",
     "videogular-overlay-play": "latest",
     "videogular-poster": "latest",
-    "videogular-ima-ads": "latest"
+    "videogular-ima-ads": "latest",
+    "angular": "~1.3.9"
   },
   "resolutions": {
-    "angular": "1.3.8"
+    "angular": "~1.3.9"
   }
 }
