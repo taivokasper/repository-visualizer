@@ -2,18 +2,18 @@ package com.repovisualizer.model;
 
 import com.repovisualizer.exception.RepoUpdateException;
 import com.repovisualizer.service.GenerationService;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.http.HttpStatus;
 import org.zeroturnaround.exec.ProcessExecutor;
 import org.zeroturnaround.exec.stream.slf4j.Slf4jStream;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Predicate;
@@ -27,10 +27,14 @@ public class Repo {
     private File location;
     private RepoType repoType;
     private String videoPath;
-
-    private String downloadPathPattern;
-    private GenerationService generationService;
     private Boolean isGenerating = false;
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private String videoResultsDirOnHdd;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private GenerationService generationService;
 
     public Repo(File location, String downloadRelativePathPattern) {
         this.location = location;
@@ -41,9 +45,9 @@ public class Repo {
             repoType = RepoType.fromDirname(hiddenDir.getName());
     }
 
-    public Repo(File location, String downloadPathPattern, String downloadRelativePathPattern, GenerationService generationService) {
+    public Repo(File location, String videoResultsDirOnHdd, String downloadRelativePathPattern, GenerationService generationService) {
         this(location, downloadRelativePathPattern);
-        this.downloadPathPattern = downloadPathPattern;
+        this.videoResultsDirOnHdd = videoResultsDirOnHdd;
         this.generationService = generationService;
     }
 
@@ -62,7 +66,7 @@ public class Repo {
     }
 
     public String getVideoPath() {
-        if (isExistingUrl(downloadPathPattern.replace("#REPO_NAME#", name))) {
+        if (new File(videoResultsDirOnHdd + "/" + name + ".mp4").exists()) {
             return videoPath;
         }
         return null;
@@ -70,21 +74,6 @@ public class Repo {
 
     public Boolean getIsGenerating() {
         return generationService.isGenerating(getName());
-    }
-
-    private boolean isExistingUrl(String url) {
-        HttpURLConnection connection;
-        try {
-            URL videoUrl = new URL(url);
-            connection = (HttpURLConnection) videoUrl.openConnection();
-            //Set request to header to reduce load.
-            connection.setRequestMethod("HEAD");
-            int code = connection.getResponseCode();
-            LOG.info("Url " + url + " returned status code " + code);
-            return HttpStatus.NOT_FOUND.value() != code;
-        } catch (IOException e) {
-            return false;
-        }
     }
 
     public void update() {

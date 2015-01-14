@@ -5,7 +5,7 @@ RUN apt-get install -y git maven nodejs-legacy nodejs npm ruby
 RUN npm install -g grunt-cli bower
 RUN gem install sass
 
-VOLUME ["/artifact", "/source"]
+VOLUME ["/artifact", "/source", "/root/.m2"]
 
 CMD rm -rf repository-visualizer && \
 cp -r /source repository-visualizer && \

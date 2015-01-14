@@ -7,10 +7,6 @@ web:
     environment:
         # Jar filename from artifacts directory
         JAR_NAME: repovisualizer-0.0.1.jar
-        # Port defined above
-        EXTERNAL_PORT: 8080
-        # Address from where everything is available. When using boot2docker then find the ip with command "boot2docker ip"
-        EXTERNAL_ADDRESS: 192.168.59.103
     volumes:
         # rsa files and known hosts are copied from this location.
         - ~/.ssh:/ssh

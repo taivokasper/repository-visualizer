@@ -37,10 +37,12 @@ angular.module('rv').controller('VideoController', [
             $scope.flags.generationInProgress = true;
             $scope.flags.generateButtonPressed = true;
 
-            GenerateVideoResource.generate({repoName: $scope.repoName}).$promise
-                .then(function () {
-                    $state.reload()
-                });
+            GenerateVideoResource.generate({repoName: $scope.repoName}, function () {
+                $state.reload();
+            }, function (err) {
+                console.error(err);
+                $state.reload();
+            });
         };
     }
 ]);

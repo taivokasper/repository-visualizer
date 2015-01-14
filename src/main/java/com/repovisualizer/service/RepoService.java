@@ -22,12 +22,8 @@ public class RepoService {
     private String reposHome;
     private File reposHomeFile;
 
-    @Value(value = "${external.server.protocol}")
-    private String externalServerProtocol;
-    @Value(value = "${external.server.address}")
-    private String externalServerAddress;
-    @Value(value = "${external.server.port}")
-    private int externalServerPort;
+    @Value(value = "${video.results.dir}")
+    private String videoResultsDirOnHdd;
     @Value(value = "${video.download.url.pattern}")
     private String videoDownloadUrlPattern;
     @Autowired
@@ -44,9 +40,8 @@ public class RepoService {
     }
 
     public List<Repo> getListOfRepositories() {
-        String videoPattern = externalServerProtocol + "://" + externalServerAddress + ":" + externalServerPort + "/" + videoDownloadUrlPattern;
         File[] files = getReposHome().listFiles(i -> i.exists() && i.isDirectory() && i.canRead() && new Repo(i, videoDownloadUrlPattern).isValidRepoRoot());
-        return Arrays.stream(files).map(i -> new Repo(i, videoPattern, videoDownloadUrlPattern, generationService)).collect(toList());
+        return Arrays.stream(files).map(i -> new Repo(i, videoResultsDirOnHdd, videoDownloadUrlPattern, generationService)).collect(toList());
     }
 
     public Optional<Repo> getByRepoName(String repoName) {
