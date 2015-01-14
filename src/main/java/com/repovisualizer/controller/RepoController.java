@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @RestController
 @RequestMapping(value = "rest/repo")
 public class RepoController {
@@ -25,12 +23,6 @@ public class RepoController {
     @ResponseStatus(HttpStatus.OK)
     public Repo getRepo(@PathVariable String repoName) {
         return repoService.getByRepoName(repoName).orElseThrow(RepoNotFound::new);
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/{repoName}")
-    @ResponseStatus(HttpStatus.OK)
-    public Repo generateVideo(@PathVariable String repoName) {
-        return repoService.generate(repoName);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")

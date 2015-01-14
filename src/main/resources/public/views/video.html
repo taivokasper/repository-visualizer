@@ -18,6 +18,10 @@
         </div>
     </section>
 
-    <button class="btn btn--m btn--blue btn--raised" lx-ripple
-            ng-click="generateNewVideo()" ng-disabled="flags.generationInProgress">Generate new</button>
+    <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="generateNewVideo()"
+            ng-disabled="flags.generationInProgress || flags.someGenerationInProgress">
+        <span ng-show="flags.someGenerationInProgress && !flags.generationInProgress">Another video is processing</span>
+        <span ng-show="!flags.someGenerationInProgress && !flags.generationInProgress">Generate new</span>
+        <span ng-show="!flags.someGenerationInProgress && flags.generationInProgress">Please wait</span>
+    </button>
 </div>

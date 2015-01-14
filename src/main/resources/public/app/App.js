@@ -26,6 +26,9 @@ angular.module('rv',
                 resolve: {
                     repo: ['$stateParams', 'RepoResource', function ($stateParams, RepoResource) {
                         return RepoResource.get({ repoName: $stateParams.repoName }).$promise;
+                    }],
+                    someGenerationInProgress: ['$stateParams', 'GenerationInfoResource', function ($stateParams, GenerationInfoResource) {
+                        return GenerationInfoResource.get().$promise;
                     }]
                 }
             });
