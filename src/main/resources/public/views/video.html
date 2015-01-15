@@ -18,10 +18,36 @@
         </div>
     </section>
 
-    <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="generateNewVideo()"
+    <button class="btn btn--m btn--blue btn--raised" lx-ripple ng-click="openDialog('generate')"
             ng-disabled="flags.generationInProgress || flags.someGenerationInProgress">
         <span ng-show="flags.someGenerationInProgress && !flags.generationInProgress">Another video is being processed</span>
         <span ng-show="!flags.someGenerationInProgress && !flags.generationInProgress">Generate new</span>
         <span ng-show="!flags.someGenerationInProgress && flags.generationInProgress">Please wait</span>
     </button>
+
+    <button class="btn btn--m btn--red btn--raised" lx-ripple ng-click="cancelGeneration()" ng-if="flags.generationInProgress">
+        Cancel
+    </button>
+
+    <lx-dialog id="generate" class="dialog dialog--alert">
+        <div class="dialog__header">
+            <div class="toolbar">
+                <span class="toolbar__label tc-white fs-title">
+                    Visualize your Repository
+                </span>
+            </div>
+        </div>
+
+        <div class="dialog__content">
+            <div class="p">
+                <lx-date-picker model="datepicker.start-date" label="Pick a starting date"></lx-date-picker>
+                <lx-date-picker model="datepicker.end-date" label="Pick a ending date"></lx-date-picker>
+            </div>
+        </div>
+
+        <div class="dialog__actions">
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close>Cancel</button>
+            <button class="btn btn--m btn--black btn--flat" lx-ripple lx-dialog-close ng-click="generateNewVideo()">Generate</button>
+        </div>
+    </lx-dialog>
 </div>
