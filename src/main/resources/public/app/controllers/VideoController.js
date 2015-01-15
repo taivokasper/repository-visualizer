@@ -1,6 +1,6 @@
 angular.module('rv').controller('VideoController', [
-    '$scope', '$state', '$stateParams', '$interval', 'GenerateVideoResource', 'GenerationInfoResource', 'repo', 'someGenerationInProgress',
-    function ($scope, $state, $stateParams, $interval, GenerateVideoResource, GenerationInfoResource, repo, someGenerationInProgress) {
+    '$scope', '$state', '$stateParams', '$interval', 'GenerateVideoResource', 'GenerationInfoResource', 'repo', 'someGenerationInProgress', 'LxNotificationService',
+    function ($scope, $state, $stateParams, $interval, GenerateVideoResource, GenerationInfoResource, repo, someGenerationInProgress, LxNotificationService) {
         'use strict';
 
         $scope.repoName = $stateParams.repoName;
@@ -37,10 +37,10 @@ angular.module('rv').controller('VideoController', [
             $scope.flags.generationInProgress = true;
             $scope.flags.generateButtonPressed = true;
 
-            GenerateVideoResource.generate({repoName: $scope.repoName}, function () {
+            GenerateVideoResource.generate({repoName: $scope.repoName}).$promise.then(function () {
                 $state.reload();
-            }, function (err) {
-                console.error(err);
+            }).catch(function () {
+                LxNotificationService.error('Problem with generating a video');
                 $state.reload();
             });
         };
