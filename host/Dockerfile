@@ -17,8 +17,6 @@ RUN echo "[trusted]" > /etc/mercurial/hgrc.d/trust.rc
 RUN echo "groups = staff" >> /etc/mercurial/hgrc.d/trust.rc
 
 ENV JAR_NAME repovisualizer-0.0.1.jar
-ENV EXTERNAL_PORT 8080
-ENV EXTERNAL_ADDRESS localhost
 
 VOLUME ["/ssh", "/artifacts, "/reposRoot", "/avatars", "/videoResults"]
 
