@@ -2,31 +2,3 @@
 videogular vg-overlay-play {
   left: 0;
 }
-
-// Overwrite date picker
-.lx-date-picker {
-  color: #000;
-
-  .lx-date-picker__current-day-of-week {
-    background: darken($dark-blue, 10%);
-  }
-
-  .lx-date-picker__current-date {
-    background: $dark-blue;
-  }
-
-  .lx-date-picker__day a {
-    color: $dark-blue;
-  }
-
-  .lx-date-picker__day a:hover,
-  .lx-date-picker__day--is-selected a {
-    color: #fff;
-    background: $dark-blue;
-  }
-
-  .lx-date-picker__actions .btn,
-  .lx-date-picker__nav .btn {
-    color: $dark-blue;
-  }
-}
