@@ -1,6 +1,8 @@
 angular.module('rv').controller('VideoController', [
-    '$scope', '$state', '$stateParams', '$interval', 'GenerateVideoResource', 'GenerationInfoResource', 'repo', 'someGenerationInProgress', 'LxNotificationService',
-    function ($scope, $state, $stateParams, $interval, GenerateVideoResource, GenerationInfoResource, repo, someGenerationInProgress, LxNotificationService) {
+    '$scope', '$state', '$stateParams', '$interval', 'GenerateVideoResource', 'GenerationInfoResource', 'repo', 'someGenerationInProgress',
+    'LxNotificationService', 'LxDialogService',
+    function ($scope, $state, $stateParams, $interval, GenerateVideoResource, GenerationInfoResource, repo, someGenerationInProgress,
+              LxNotificationService, LxDialogService) {
         'use strict';
 
         $scope.repoName = $stateParams.repoName;
@@ -43,6 +45,10 @@ angular.module('rv').controller('VideoController', [
                 LxNotificationService.error('Problem with generating a video');
                 $state.reload();
             });
+        };
+
+        $scope.openDialog = function (dialogId) {
+            LxDialogService.open(dialogId);
         };
     }
 ]);
