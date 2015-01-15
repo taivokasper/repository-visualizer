@@ -10,7 +10,7 @@ angular.module('rv').controller('IndexController', [
         });
 
         $scope.isActiveRepo = function (repoName) {
-            return $location.url() === '//video/' + repoName;
+            return $location.url() === '/video/' + repoName;
         };
     }
 ]);
