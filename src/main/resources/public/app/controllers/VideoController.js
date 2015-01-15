@@ -44,5 +44,9 @@ angular.module('rv').controller('VideoController', [
                 $state.reload();
             });
         };
+
+        $scope.cancelGeneration = function () {
+            // TODO
+        };
     }
 ]);

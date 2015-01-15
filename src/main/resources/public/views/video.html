@@ -24,4 +24,8 @@
         <span ng-show="!flags.someGenerationInProgress && !flags.generationInProgress">Generate new</span>
         <span ng-show="!flags.someGenerationInProgress && flags.generationInProgress">Please wait</span>
     </button>
+
+    <button class="btn btn--m btn--red btn--raised" lx-ripple ng-click="cancelGeneration()" ng-if="flags.generationInProgress">
+        Cancel
+    </button>
 </div>
