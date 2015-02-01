@@ -14,3 +14,6 @@ $ ./update-and-start.sh
 ## Requirements
 * [Docker](https://www.docker.com)
 * [Fig](http://www.fig.sh)
+
+## License
+[Apache 2.0 License](//github.com/taivokasper/repository-visualizer/blob/master/LICENSE)
